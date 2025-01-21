@@ -30,8 +30,4 @@
   <ItemGroup>
     <Using Include="System.Threading.ExecutionContext" Alias="ExecutionContext" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Models\" />
-    <Folder Include="src\Services\" />
-  </ItemGroup>
 </Project>
