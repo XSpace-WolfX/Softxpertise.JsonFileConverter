@@ -1,6 +1,6 @@
 ﻿namespace JsonFileConverterFunctionApp.src.Models
 {
-    internal class JsonResult
+    public class JsonResult
     {
         public string TypeAide { get; set; } = string.Empty;
         public int Exercice { get; set; }
