@@ -1,3 +1,4 @@
+using JsonFileConverterFunctionApp.src.Exceptions;
 using JsonFileConverterFunctionApp.src.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -74,10 +75,15 @@ namespace JsonFileConverterFunctionApp.src.Functions
 
                 return new OkObjectResult(result);
             }
+            catch (BusinessException ex)
+            {
+                _logger.LogWarning($"Business error: {ex.Message}");
+                return new BadRequestObjectResult(ex.Message);
+            }
             catch (Exception ex)
             {
-                _logger.LogError($"Error processing file: {ex.Message}");
-                return new StatusCodeResult(500); // Erreur interne du serveur
+                _logger.LogError($"Unexpected error: {ex.Message}");
+                return new ObjectResult("An unexpected error occurred.") { StatusCode = 500 };
             }
             finally
             {
