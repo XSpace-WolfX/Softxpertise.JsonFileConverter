@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
-namespace JsonFileConverterFunctionApp
+namespace JsonFileConverterFunctionApp.src.Functions
 {
-    public class Function1
+    public class JsonFileConverterFunction
     {
-        private readonly ILogger<Function1> _logger;
+        private readonly ILogger<JsonFileConverterFunction> _logger;
 
-        public Function1(ILogger<Function1> logger)
+        public JsonFileConverterFunction(ILogger<JsonFileConverterFunction> logger)
         {
             _logger = logger;
         }
 
-        [Function("Function1")]
+        [Function("JsonFileConverterFunction")]
         public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
