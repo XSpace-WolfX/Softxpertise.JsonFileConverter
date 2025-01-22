@@ -5,6 +5,6 @@ namespace JsonFileConverterFunctionApp.src.Services
 {
     public interface IJsonFileConverterService
     {
-        JsonResult ExcelConverter(IFormFile file);
+        JsonResult ExcelConverter(Stream? fileStream);
     }
 }
