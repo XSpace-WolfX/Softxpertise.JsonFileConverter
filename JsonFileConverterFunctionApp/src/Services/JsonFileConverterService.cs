@@ -16,14 +16,21 @@ namespace JsonFileConverterFunctionApp.src.Services
             _logger = logger;
         }
 
-        public JsonResult ExcelConverter(IFormFile file)
+        public JsonResult ExcelConverter(Stream? fileStream)
         {
             _logger.LogInformation("Starting service ExcelConverter...");
 
             try
             {
-                using (var stream = file.OpenReadStream())
-                using (var reader = ExcelReaderFactory.CreateReader(stream))
+                Stream readableStream;
+                var memoryStream = new MemoryStream();
+                if (fileStream != null)
+                    fileStream.CopyTo(memoryStream);
+                memoryStream.Position = 0; // Réinitialise la position au début
+                readableStream = memoryStream; // Utilise le MemoryStream
+
+                //using (var stream = File.OpenRead(filePath))
+                using (var reader = ExcelReaderFactory.CreateReader(readableStream))
                 {
                     var dataSet = reader.AsDataSet(new ExcelDataSetConfiguration
                     {
