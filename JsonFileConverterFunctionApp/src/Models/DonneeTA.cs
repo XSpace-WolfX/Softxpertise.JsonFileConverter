@@ -3,6 +3,6 @@
     public class DonneeTA
     {
         public string CodeDonnee { get; set; } = string.Empty;
-        public decimal Valeur { get; set; }
+        public object Valeur { get; set; } = new object();
     }
 }
